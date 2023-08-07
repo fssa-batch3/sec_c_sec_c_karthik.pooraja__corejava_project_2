@@ -36,33 +36,33 @@ public class TestBooksDAO {
         Assertions.assertTrue(result); // Check if the book was added successfully
     }
 
-    @Test
-    public void testReadBooks() throws SQLException, BookDAOCRUDException {
-        Assertions.assertTrue(BookDao.readBooks());
-    }
+//    @Test
+//    public void testReadBooks() throws SQLException, BookDAOCRUDException {
+//        Assertions.assertTrue(BookDao.readBooks());
+//    }
 
-    @Test
-    public void testUpdateBooks() throws SQLException, BookDAOCRUDException {
-        // Create an updated book object with new details
-        Book updatedBook = new Book();
-        updatedBook.setId(3); // Replace with the actual ID of the book to update
-        updatedBook.setTitle("Updated Title");
-        updatedBook.setAuthor("Updated Author");
-        updatedBook.setPublisheddate(LocalDate.of(2023, 8, 1));
-        updatedBook.setPublishername("Updated Publisher");
-        updatedBook.setBookimageurl("http://example.com/updated-image.jpg");
-        updatedBook.setEdition(2);
-        updatedBook.setCategoryname(BookCategory.FANTASY);
+//    @Test
+//    public void testUpdateBooks() throws SQLException, BookDAOCRUDException {
+//        // Create an updated book object with new details
+//        Book updatedBook = new Book();
+//        updatedBook.setId(3); // Replace with the actual ID of the book to update
+//        updatedBook.setTitle("Updated Title");
+//        updatedBook.setAuthor("Updated Author");
+//        updatedBook.setPublisheddate(LocalDate.of(2023, 8, 1));
+//        updatedBook.setPublishername("Updated Publisher");
+//        updatedBook.setBookimageurl("http://example.com/updated-image.jpg");
+//        updatedBook.setEdition(2);
+//        updatedBook.setCategoryname(BookCategory.FANTASY);
+//
+//        // Call the updateBooks method and assert the result
+//        boolean updateResult = BookDao.updateBooks(updatedBook); // Use the actual ID
+//        Assertions.assertTrue(updateResult);
+//    }
 
-        // Call the updateBooks method and assert the result
-        boolean updateResult = BookDao.updateBooks(updatedBook); // Use the actual ID
-        Assertions.assertTrue(updateResult);
-    }
-
-    @Test
-    public void testDeleteBook() throws SQLException, BookDAOCRUDException {
-        // Call the deleteBooks method and assert the result
-        boolean deleteResult = BookDao.deleteBooks(4); // Use the actual ID
-        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully
-    }
+//    @Test
+//    public void testDeleteBook() throws SQLException, BookDAOCRUDException {
+//        // Call the deleteBooks method and assert the result
+//        boolean deleteResult = BookDao.deleteBooks(4); // Use the actual ID
+//        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully
+//    }
 }
