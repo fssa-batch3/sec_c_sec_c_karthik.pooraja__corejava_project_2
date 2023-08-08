@@ -115,8 +115,7 @@
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
 					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.9.0.2155</version> <!-- Check for the latest
-					                    version on the Maven Central repository -->
+					<version>3.9.0.2155</version>
 				</plugin>
 
 			</plugins>
