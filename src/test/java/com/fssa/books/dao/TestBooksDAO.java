@@ -4,19 +4,14 @@ package com.fssa.books.dao;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import com.fssa.books.*;
+
 import com.fssa.books.exception.BookDAOCRUDException;
-import com.fssa.books.model.BookCategory;
 import com.fssa.books.model.Book;
+import com.fssa.books.model.BookCategory;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class TestBooksDAO {
 
