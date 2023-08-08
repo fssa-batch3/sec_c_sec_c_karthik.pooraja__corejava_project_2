@@ -17,7 +17,8 @@ public class ConnectionUtil {
             url = System.getenv("DATABASE_HOST");
             userName = System.getenv("DATABASE_USERNAME");
             passWord = System.getenv("DATABASE_PASSWORD");
-        } else {
+        } 
+        else {
             Dotenv env = Dotenv.load();
             url = env.get("DATABASE_HOST");
             userName = env.get("DATABASE_USERNAME");
@@ -28,6 +29,7 @@ public class ConnectionUtil {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, userName, passWord);
+            System.out.println("hi");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Unable to connect to the database");
