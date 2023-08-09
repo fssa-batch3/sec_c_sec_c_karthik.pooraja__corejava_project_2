@@ -29,7 +29,7 @@ public class ConnectionUtil {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, userName, passWord);
-            System.out.println("hi");
+            System.out.println(     "hi"     );
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Unable to connect to the database");
