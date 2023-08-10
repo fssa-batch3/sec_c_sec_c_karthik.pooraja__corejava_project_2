@@ -2,14 +2,18 @@ package com.fssa.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+
+import com.fssa.connection.exception.ConnectionException;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
-
-	public static Connection getConnection() {
+	
+	public static Connection getConnection() throws ConnectionException{
 		Connection con = null;
 
 		String url, userName, passWord;
+		 
 
 		if (System.getenv("CI") != null) {
 			url = System.getenv("DATABASE_HOST");
@@ -20,20 +24,21 @@ public class ConnectionUtil {
 			url = env.get("DATABASE_HOST");
 			userName = env.get("DATABASE_USERNAME");
 			passWord = env.get("DATABASE_PASSWORD");
-
+             
 		}
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, userName, passWord);
+			System.out.println("Hi");
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException("Unable to connect to the database");
+			throw new ConnectionException("Unable to connect to the database");
 		}
 		return con;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ConnectionException {
 		ConnectionUtil.getConnection();
 	}
 }

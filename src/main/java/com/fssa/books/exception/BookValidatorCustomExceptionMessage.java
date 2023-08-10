@@ -1,6 +1,6 @@
 package com.fssa.books.exception;
 
-public interface BookValidatorCustomExceptionMessage {
+public class BookValidatorCustomExceptionMessage {
     public static final String INVALID_INTEGER_RANGE="Your input is not in required range";
     public static final String INVALID_INTEGER="the number shouldn't start with zero";
     public static final String NULL_OR_EMPTY_INVALID="Your Title input can't be null or empty";

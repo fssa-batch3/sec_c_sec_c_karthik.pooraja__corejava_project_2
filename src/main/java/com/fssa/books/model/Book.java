@@ -4,8 +4,7 @@
 package com.fssa.books.model;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Locale.Category;
+
 
 
 
@@ -23,6 +22,7 @@ public class Book {
 	private BookCategory categoryname;
 	private int id;
 	private String bookimageurl;
+
 
 	public String getTitle() {
 		return title;
@@ -103,11 +103,23 @@ public class Book {
 		this.bookimageurl = bookimageurl;
 
 	}
-
+    
 	public Book(int id, String title, String author, LocalDate publishedDate, String publisher,
-			String bookImageUrl, int edition, BookCategory category) {
-		
-	}
+            String bookImageUrl, int edition, BookCategory category) {
+    
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.publisheddate = publishedDate;
+    this.publishername = publisher;
+    this.bookimageurl = bookImageUrl;
+    this.edition = edition;
+    this.categoryname = category;
+
+    
+    throw new UnsupportedOperationException("Constructor implementation is missing.");
+}
+
 
 	
 

@@ -1,12 +1,10 @@
 package com.fssa.books.validator;
 
 import java.time.LocalDate;
-import java.util.EnumSet;
 import java.util.regex.Pattern;
 
 import com.fssa.books.exception.BookDataException;
 import com.fssa.books.exception.BookValidatorCustomExceptionMessage;
-import com.fssa.books.model.BookCategory;
 import com.fssa.books.model.Book;
 
 
@@ -17,7 +15,11 @@ import com.fssa.books.model.Book;
  *
  */
 public class BooksValidator {
-	public static boolean validateTitle(String title) throws BookDataException {
+	private BooksValidator() {
+		super();
+	}
+	
+	static boolean validateTitle(String title) throws BookDataException {
 		if (title==null||title.trim().equals("")) {
 			throw new BookDataException(BookValidatorCustomExceptionMessage.NULL_OR_EMPTY_INVALID);
 		} else if (title.length() < 2) {
@@ -46,7 +48,7 @@ public class BooksValidator {
 		return true;
 	}
 	
-	public static boolean validateId(int id) throws BookDataException {
+     public static boolean validateId(int id) throws BookDataException {
 		if (id <= 0||id >= Integer.MAX_VALUE) {
 			throw new BookDataException(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE);
 		}

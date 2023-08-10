@@ -11,12 +11,13 @@ import org.junit.jupiter.api.Test;
 import com.fssa.books.exception.BookDAOCRUDException;
 import com.fssa.books.model.Book;
 import com.fssa.books.model.BookCategory;
+import com.fssa.connection.exception.ConnectionException;
 
 
-public class TestBooksDAO {
+class TestBooksDAO {
 
     @Test
-    public void testAddBooks() throws SQLException, BookDAOCRUDException {
+    void testAddBooks() throws SQLException, BookDAOCRUDException,ConnectionException{
         // Create a book object with the desired details
         Book book = new Book();
         book.setTitle("Test Book");
@@ -32,12 +33,12 @@ public class TestBooksDAO {
     }
 
 //    @Test
-//    public void testReadBooks() throws SQLException, BookDAOCRUDException {
+//    void testReadBooks() throws SQLException, BookDAOCRUDException {
 //        Assertions.assertTrue(BookDao.readBooks());
 //    }
 
 //    @Test
-//    public void testUpdateBooks() throws SQLException, BookDAOCRUDException {
+//    void testUpdateBooks() throws SQLException, BookDAOCRUDException {
 //        // Create an updated book object with new details
 //        Book updatedBook = new Book();
 //        updatedBook.setId(3); // Replace with the actual ID of the book to update
@@ -55,7 +56,7 @@ public class TestBooksDAO {
 //    }
 
 //    @Test
-//    public void testDeleteBook() throws SQLException, BookDAOCRUDException {
+//    void testDeleteBook() throws SQLException, BookDAOCRUDException {
 //        // Call the deleteBooks method and assert the result
 //        boolean deleteResult = BookDao.deleteBooks(4); // Use the actual ID
 //        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully

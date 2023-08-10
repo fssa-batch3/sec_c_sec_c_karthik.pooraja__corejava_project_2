@@ -13,16 +13,16 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 // Other necessary imports
 
-public class TestBookValidator {
+class TestBookValidator {
     Book input=new Book();
 	@Test
-	public void testValidateTitle_ValidTitle() throws BookDataException {
+    void testValidateTitle_ValidTitle() throws BookDataException {
 		input.setTitle("Adventures of tom Sawyer");
 		Assertions.assertTrue(BooksValidator.validateTitle(input.getTitle()));
 	}
 
 	@Test
-	public void testInvalidTitleNullInput() {
+	void testInvalidTitleNullInput() {
 		input.setTitle(null);
 
 		try {
@@ -34,7 +34,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void testValidateTitle_EmptyInput() {
+	void testValidateTitle_EmptyInput() {
 		input.setTitle("");
 
 		try {
@@ -46,7 +46,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void minimalTitleLength() {
+	void minimalTitleLength() {
 		input.setTitle("Z");
 		try {
 			BooksValidator.validateTitle(input.getTitle());
@@ -57,7 +57,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void testValidateAuthor_ValidAuthor() {
+	void testValidateAuthor_ValidAuthor() {
 		input.setAuthor("Tom Sawyer");
 		try {
 			Assertions.assertTrue(BooksValidator.validateAuthor(input.getAuthor()));
@@ -67,7 +67,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void testInvalidAuthorNullInput() {
+	void testInvalidAuthorNullInput() {
 		input.setAuthor(null);
 
 		try {
@@ -79,7 +79,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void testValidateAuthorEmptyInput() {
+	void testValidateAuthorEmptyInput() {
 		input.setAuthor("");
 
 		try {
@@ -91,7 +91,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void minimalAuthorLength() {
+	void minimalAuthorLength() {
 		input.setAuthor("P");
 		try {
 			BooksValidator.validateAuthor(input.getAuthor());
@@ -101,7 +101,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void validUrl() throws BookDataException{
+	void validUrl() throws BookDataException{
 		input.setBookimageurl("https://iili.io/HWXep1e.png");
 		try {
 			Assertions.assertTrue(BooksValidator.isValidBookImageUrl(input.getBookimageurl()));
@@ -110,7 +110,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidUrl() throws BookDataException{
+	void invalidUrl() throws BookDataException{
 		input.setBookimageurl("iili.io/HWXep1e.png");
 		try {
 			Assertions.assertTrue(BooksValidator.isValidBookImageUrl(input.getBookimageurl()));
@@ -120,7 +120,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void nullUrl() {
+	void nullUrl() {
 		input.setBookimageurl(null);
 		try {
 			BooksValidator.isValidBookImageUrl(input.getBookimageurl());
@@ -131,7 +131,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void emptyUrl() {
+	void emptyUrl() {
 		input.setBookimageurl("");
 		try {
 			BooksValidator.isValidBookImageUrl(input.getBookimageurl());
@@ -142,7 +142,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void minimalLengthUrl() {
+	void minimalLengthUrl() {
 		input.setBookimageurl("A");
 		try {
 			BooksValidator.isValidBookImageUrl(input.getBookimageurl());
@@ -153,13 +153,13 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void validPublisher() throws BookDataException {
+	void validPublisher() throws BookDataException {
 		input.setPublishername("Bible Society of India");
 		Assertions.assertTrue(BooksValidator.validatePublisherName(input.getPublishername()));
 	}
 
 	@Test
-	public void nullPublisher() {
+	void nullPublisher() {
 		input.setPublishername(null);
 
 		try {
@@ -171,7 +171,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void emptyPublisher() {
+	void emptyPublisher() {
 		input.setPublishername("");
 
 		try {
@@ -183,7 +183,7 @@ public class TestBookValidator {
 	}
 
 	@Test
-	public void minimalLengthPublisher() {
+	void minimalLengthPublisher() {
 		input.setPublishername("A");
 		try {
 			BooksValidator.validatePublisherName(input.getPublishername());
@@ -193,7 +193,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void validId() {
+	void validId() {
 		input.setId(25);
 		try {
 			Assertions.assertTrue(BooksValidator.validateId(input.getId()));
@@ -203,7 +203,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidUpperRangeId() {
+	void invalidUpperRangeId() {
 		try {
 			input.setId(Integer.MAX_VALUE+1);
 			BooksValidator.validateId(input.getId());
@@ -215,7 +215,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidLowerRangeId() {
+	void invalidLowerRangeId() {
 		
 		try {
 			input.setId(-1);
@@ -228,7 +228,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidId() {
+	void invalidId() {
 		
 		try {
 			input.setId(012);
@@ -241,7 +241,7 @@ public class TestBookValidator {
 	}
 	
 	@Test
-	public void validEdition() {
+	void validEdition() {
 		
 		try {
 			input.setEdition(25);
@@ -252,7 +252,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidUpperRangeEdition() {
+	void invalidUpperRangeEdition() {
 		
 		try {
 			input.setEdition(Integer.MAX_VALUE+1);
@@ -265,7 +265,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidLowerRangeEdition() {
+	void invalidLowerRangeEdition() {
 		try {
 			input.setEdition(-10);
 			BooksValidator.validateEdition(input.getEdition());
@@ -277,7 +277,7 @@ public class TestBookValidator {
 		}
 	}
 	@Test
-	public void invalidEdition() {
+	void invalidEdition() {
 		input.setEdition(025);
 		try {
 			BooksValidator.validateEdition(input.getEdition());
@@ -291,7 +291,7 @@ public class TestBookValidator {
 	
 	
 	 @Test
-	    public void testValidBook() throws BookDataException {
+	    void testValidBook() throws BookDataException {
 	        // Create a valid book object for testing
 	        Book book = new Book();
 	        book.setTitle("Book Title");
