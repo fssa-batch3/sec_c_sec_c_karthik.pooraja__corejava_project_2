@@ -5,18 +5,18 @@ import com.fssa.books.exception.BookValidatorCustomExceptionMessage;
 import com.fssa.books.model.*;
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Assertions;
-// Other necessary imports
+
 
 class TestBookValidator {
-    Book input=new Book();
+	Book input = new Book();
+
 	@Test
-    void testValidateTitle_ValidTitle() throws BookDataException {
+	void testValidateTitle_ValidTitle() throws BookDataException {
 		input.setTitle("Adventures of tom Sawyer");
 		Assertions.assertTrue(BooksValidator.validateTitle(input.getTitle()));
 	}
@@ -100,8 +100,9 @@ class TestBookValidator {
 			assertEquals(BookValidatorCustomExceptionMessage.MINIMAL_INPUT, e.getMessage());
 		}
 	}
+
 	@Test
-	void validUrl() throws BookDataException{
+	void validUrl() throws BookDataException {
 		input.setBookimageurl("https://iili.io/HWXep1e.png");
 		try {
 			Assertions.assertTrue(BooksValidator.isValidBookImageUrl(input.getBookimageurl()));
@@ -109,13 +110,14 @@ class TestBookValidator {
 
 		}
 	}
+
 	@Test
-	void invalidUrl() throws BookDataException{
+	void invalidUrl() throws BookDataException {
 		input.setBookimageurl("iili.io/HWXep1e.png");
 		try {
 			Assertions.assertTrue(BooksValidator.isValidBookImageUrl(input.getBookimageurl()));
 		} catch (BookDataException e) {
-           assertEquals(BookValidatorCustomExceptionMessage.INVALID_IMAGE_URL, e.getMessage());
+			assertEquals(BookValidatorCustomExceptionMessage.INVALID_IMAGE_URL, e.getMessage());
 		}
 	}
 
@@ -192,119 +194,116 @@ class TestBookValidator {
 			assertEquals(BookValidatorCustomExceptionMessage.MINIMAL_INPUT, e.getMessage());
 		}
 	}
+
 	@Test
 	void validId() {
 		input.setId(25);
 		try {
 			Assertions.assertTrue(BooksValidator.validateId(input.getId()));
-		}
-		catch(BookDataException e) {
-			
+		} catch (BookDataException e) {
+
 		}
 	}
+
 	@Test
 	void invalidUpperRangeId() {
 		try {
-			input.setId(Integer.MAX_VALUE+1);
+			input.setId(Integer.MAX_VALUE + 1);
 			BooksValidator.validateId(input.getId());
 			fail("Expected BookDataException was not thrown.");
-		}
-		catch(BookDataException e) {
-			
-			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE,e.getMessage());
+		} catch (BookDataException e) {
+
+			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE, e.getMessage());
 		}
 	}
+
 	@Test
 	void invalidLowerRangeId() {
-		
+
 		try {
 			input.setId(-1);
 			BooksValidator.validateId(input.getId());
 			fail("Expected BookDataException was not thrown.");
-		}
-		catch(BookDataException e) {
-			
-			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE,e.getMessage());
+		} catch (BookDataException e) {
+
+			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE, e.getMessage());
 		}
 	}
+
 	@Test
 	void invalidId() {
-		
+
 		try {
 			input.setId(012);
 			BooksValidator.validateId(input.getId());
-		}
-		catch(BookDataException e) {
-			
-			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER,e.getMessage());
+		} catch (BookDataException e) {
+
+			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER, e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void validEdition() {
-		
+
 		try {
 			input.setEdition(25);
 			Assertions.assertTrue(BooksValidator.validateEdition(input.getEdition()));
-		}
-		catch(BookDataException e) {
-			
+		} catch (BookDataException e) {
+
 		}
 	}
+
 	@Test
 	void invalidUpperRangeEdition() {
-		
+
 		try {
-			input.setEdition(Integer.MAX_VALUE+1);
+			input.setEdition(Integer.MAX_VALUE + 1);
 			BooksValidator.validateEdition(input.getEdition());
 			fail("Expected BookDataException was not thrown.");
-		}
-		catch(BookDataException e) {
-			
-			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE,e.getMessage());
+		} catch (BookDataException e) {
+
+			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE, e.getMessage());
 		}
 	}
+
 	@Test
 	void invalidLowerRangeEdition() {
 		try {
 			input.setEdition(-10);
 			BooksValidator.validateEdition(input.getEdition());
 			fail("Expected BookDataException was not thrown.");
-		}
-		catch(BookDataException e) {
-			
-			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE,e.getMessage());
+		} catch (BookDataException e) {
+
+			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER_RANGE, e.getMessage());
 		}
 	}
+
 	@Test
 	void invalidEdition() {
 		input.setEdition(025);
 		try {
 			BooksValidator.validateEdition(input.getEdition());
-			
-		}
-		catch(BookDataException e) {
-			
-			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER,e.getMessage());
+
+		} catch (BookDataException e) {
+
+			Assertions.assertEquals(BookValidatorCustomExceptionMessage.INVALID_INTEGER, e.getMessage());
 		}
 	}
-	
-	
-	 @Test
-	    void testValidBook() throws BookDataException {
-	        // Create a valid book object for testing
-	        Book book = new Book();
-	        book.setTitle("Book Title");
-	        book.setAuthor("Author Name");
-	        book.setEdition(1);
-	        book.setPublishername("Publisher Name");
-	        book.setPublisheddate(LocalDate.of(2023, 7, 31));
-	        book.setBookimageurl("http://example.com/book.jpg");
 
-	        boolean result = BooksValidator.validateBook(book);
+	@Test
+	void testValidBook() throws BookDataException {
+		// Create a valid book object for testing
+		Book book = new Book();
+		book.setTitle("Book Title");
+		book.setAuthor("Author Name");
+		book.setEdition(1);
+		book.setPublishername("Publisher Name");
+		book.setPublisheddate(LocalDate.of(2023, 7, 31));
+		book.setBookimageurl("http://example.com/book.jpg");
 
-	        assertTrue(result); // Check if validation passes for a valid book
-	    }
+		boolean result = BooksValidator.validateBook(book);
 
+		assertTrue(result); // Check if validation passes for a valid book
+	}
 
 }

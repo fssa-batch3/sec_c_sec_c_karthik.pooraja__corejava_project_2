@@ -1,36 +1,39 @@
 package com.fssa.books.dao;
 
 
-
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.books.exception.BookDAOCRUDException;
+import com.fssa.books.exception.BookDataException;
 import com.fssa.books.model.Book;
 import com.fssa.books.model.BookCategory;
+import com.fssa.books.service.BookService;
 import com.fssa.connection.exception.ConnectionException;
-
+import com.fssa.util.CustomLogger;
 
 class TestBooksDAO {
 
-    @Test
-    void testAddBooks() throws SQLException, BookDAOCRUDException,ConnectionException{
-        // Create a book object with the desired details
-        Book book = new Book();
-        book.setTitle("Test Book");
-        book.setAuthor("Test Author");
-        book.setPublisheddate(LocalDate.of(2023, 7, 31));
-        book.setPublishername("Test Publisher");
-        book.setBookimageurl("http://example.com/test-book.jpg");
-        book.setEdition(1);
-        book.setCategoryname(BookCategory.FICTION);
+	@Test
+	void testAddBooks() throws SQLException, BookDAOCRUDException, ConnectionException {
+		// Create a book object with the desired details
+		Book book = new Book();
+		book.setTitle("Test Book");
+		book.setAuthor("Test Author");
+		book.setPublisheddate(LocalDate.of(2023, 7, 31));
+		book.setPublishername("Test Publisher");
+		book.setBookimageurl("http://example.com/test-book.jpg");
+		book.setEdition(1);
+		book.setCategoryname(BookCategory.ROMANCE);
 
-        boolean result = BookDao.addBooks(book);
-        Assertions.assertTrue(result); // Check if the book was added successfully
-    }
+		boolean result = BookDao.addBooks(book);
+		Assertions.assertTrue(result); // Check if the book was added successfully
+	}
 
 //    @Test
 //    void testReadBooks() throws SQLException, BookDAOCRUDException {
@@ -55,10 +58,25 @@ class TestBooksDAO {
 //        Assertions.assertTrue(updateResult);
 //    }
 
-//    @Test
-//    void testDeleteBook() throws SQLException, BookDAOCRUDException {
-//        // Call the deleteBooks method and assert the result
-//        boolean deleteResult = BookDao.deleteBooks(4); // Use the actual ID
-//        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully
-//    }
+    @Test
+    void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionException {
+        // Call the deleteBooks method and assert the result
+        boolean deleteResult = BookDao.deleteBooks(11); // Use the actual ID
+        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully
+    }
+	
+	
+	@Test
+	void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookDataException {
+		
+		List<Book> bookList = BookService.getAllBookByCategory(null);
+		
+		for(Book e : bookList) {
+			CustomLogger.info(e);
+		}
+		
+	}
+	
 }
+
+
