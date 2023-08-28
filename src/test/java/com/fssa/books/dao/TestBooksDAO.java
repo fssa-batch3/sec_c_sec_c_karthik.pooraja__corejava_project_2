@@ -4,7 +4,6 @@ package com.fssa.books.dao;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,27 +35,27 @@ class TestBooksDAO {
 	}
 
 //    @Test
-//    void testReadBooks() throws SQLException, BookDAOCRUDException {
+//    void testReadBooks() throws SQLException, BookDAOCRUDException, ConnectionException {
 //        Assertions.assertTrue(BookDao.readBooks());
 //    }
 
-//    @Test
-//    void testUpdateBooks() throws SQLException, BookDAOCRUDException {
-//        // Create an updated book object with new details
-//        Book updatedBook = new Book();
-//        updatedBook.setId(3); // Replace with the actual ID of the book to update
-//        updatedBook.setTitle("Updated Title");
-//        updatedBook.setAuthor("Updated Author");
-//        updatedBook.setPublisheddate(LocalDate.of(2023, 8, 1));
-//        updatedBook.setPublishername("Updated Publisher");
-//        updatedBook.setBookimageurl("http://example.com/updated-image.jpg");
-//        updatedBook.setEdition(2);
-//        updatedBook.setCategoryname(BookCategory.FANTASY);
-//
-//        // Call the updateBooks method and assert the result
-//        boolean updateResult = BookDao.updateBooks(updatedBook); // Use the actual ID
-//        Assertions.assertTrue(updateResult);
-//    }
+    @Test
+    void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionException {
+        // Create an updated book object with new details
+       Book updatedBook = new Book();
+       updatedBook.setId(3); // Replace with the actual ID of the book to update
+        updatedBook.setTitle("Updated Title");
+       updatedBook.setAuthor("Updated Author");
+       updatedBook.setPublisheddate(LocalDate.of(2023, 8, 1));
+       updatedBook.setPublishername("Updated Publisher");
+       updatedBook.setBookimageurl("http://example.com/updated-image.jpg");
+       updatedBook.setEdition(2);
+        updatedBook.setCategoryname(BookCategory.FANTASY);
+
+        // Call the updateBooks method and assert the result
+        boolean updateResult = BookDao.updateBooks(updatedBook); // Use the actual ID
+        Assertions.assertTrue(updateResult);
+    }
 
     @Test
     void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionException {
@@ -69,7 +68,7 @@ class TestBooksDAO {
 	@Test
 	void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookDataException {
 		
-		List<Book> bookList = BookService.getAllBookByCategory(null);
+		List<Book> bookList = BookService.getAllBookByCategory("Romance");
 		
 		for(Book e : bookList) {
 			CustomLogger.info(e);

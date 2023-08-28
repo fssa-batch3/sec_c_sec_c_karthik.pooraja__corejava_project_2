@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -13,9 +12,7 @@ import com.fssa.connection.*;
 import com.fssa.connection.exception.ConnectionException;
 import com.fssa.books.exception.BookDAOCRUDException;
 import com.fssa.books.exception.BookDataException;
-import com.fssa.books.exception.BookValidatorCustomExceptionMessage;
 import com.fssa.util.*;
-import com.fssa.books.*;
 
 import com.fssa.books.model.Book;
 import com.fssa.books.model.BookCategory;
@@ -128,19 +125,6 @@ public class BookDao {
 			}
 		}
 	}
-
-	    public static void main(String[] args) {
-	        try {
-	            List<Book> books = readBooks("Test Book");
-	            
-	            for (Book book : books) {
-	                System.out.println(book);
-	            }
-	        } catch (SQLException | ConnectionException | BookDataException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    
 	    
 	    
 	    public static List<Book> readBooksByCategory(String category) throws SQLException, ConnectionException, BookDataException {
@@ -169,6 +153,9 @@ public class BookDao {
 		                }
 		            }
 		        }
+		    }
+		    catch(SQLException|ConnectionException|BookDataException  e) {
+		    	e.printStackTrace();
 		    }
 
 		    return booklist;

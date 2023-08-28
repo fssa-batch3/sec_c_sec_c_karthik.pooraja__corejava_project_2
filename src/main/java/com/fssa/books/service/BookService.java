@@ -7,14 +7,10 @@ import com.fssa.books.dao.BookDao;
 import com.fssa.books.exception.BookDAOCRUDException;
 import com.fssa.books.exception.BookDataException;
 import com.fssa.books.model.Book;
-import com.fssa.books.model.BookCategory;
 import com.fssa.books.validator.BooksValidator;
 import com.fssa.connection.exception.ConnectionException;
 
 public class BookService {
-	private BookService() {
-		super();
-	}
 
 	public static void addBooks(Book book)
 			throws BookDataException, BookDAOCRUDException, SQLException, ConnectionException {
