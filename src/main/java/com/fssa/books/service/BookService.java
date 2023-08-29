@@ -35,7 +35,7 @@ public class BookService {
 	}
 
 	
-	public static List<Book> getAllBookByCategory(String category) throws SQLException, ConnectionException, BookDataException {
+public static List<Book> getAllBookByCategory(String category) throws SQLException, ConnectionException, BookDataException {
 		
 		return BookDao.readBooksByCategory(category);
 		

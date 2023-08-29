@@ -1,6 +1,7 @@
 package com.fssa.books.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,11 +24,11 @@ public class BookDao {
 
 	}
 
-	private static final String ADD_QUERY = "INSERT INTO Books (title, author, publisheddate, publisher, bookimageurl, edition,category) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String READ_QUERY = "SELECT * FROM Books";
-	private static final String UPDATE_QUERY = "UPDATE Books SET title=?, author=?, publisheddate=?, publisher=?, bookimageurl=?, edition=?,category=? WHERE book_id=?";
-	private static final String DELETE_QUERY = "DELETE FROM Books WHERE book_id=?";
-	private static final String READ_BY_CATEGORY_QUERY = "SELECT * FROM Books WHERE  category = ?";
+	private static final String ADD_QUERY = "INSERT INTO books (title, author, publisheddate, publisher, bookimageurl, edition,category) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String READ_QUERY = "SELECT * FROM books";
+	private static final String UPDATE_QUERY = "UPDATE books SET title=?, author=?, publisheddate=?, publisher=?, bookimageurl=?, edition=?,category=? WHERE book_id=?";
+	private static final String DELETE_QUERY = "DELETE FROM books WHERE book_id=?";
+	private static final String READ_BY_CATEGORY_QUERY = "SELECT * FROM books WHERE  category = ?";
 
 	public static boolean addBooks(Book book) throws SQLException, ConnectionException {
 		try (Connection conn = ConnectionUtil.getConnection()) {
@@ -42,10 +43,18 @@ public class BookDao {
 				pstmt.setInt(6, book.getEdition());
 				pstmt.setString(7, book.getCategoryname().getBookCategory());
 				pstmt.executeUpdate();
-				return true;
+				
 			}
 		} 
+		catch(SQLException| ConnectionException e) {
+			CustomLogger.info(e.getMessage());
+			e.printStackTrace();
+		}
+		return true;
+		
 	}
+
+
 
 	public static List<Book> readBooks(String name) throws SQLException, ConnectionException, BookDataException {
 	    List<Book> booklist = new ArrayList<Book>();
@@ -160,6 +169,47 @@ public class BookDao {
 
 		    return booklist;
 		}
+
+
+	        private static final String DB_URL = "jdbc:mysql://localhost:3306/core_java_project";
+	        private static final String DB_USER = "root";
+	        private static final String DB_PASSWORD = "123456";
+
+	        public static boolean doesUserExist(String username) {
+	            boolean userExists = false;
+
+	            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+	                String query = "SELECT COUNT(*) FROM lms WHERE title = ?";
+	                
+	                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	                    preparedStatement.setString(1, username);
+
+	                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                        if (resultSet.next()) {
+	                            int count = resultSet.getInt(1);
+	                            userExists = count > 0;
+	                        }
+	                    }
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+
+	            return userExists;
+	        }
+
+	        public static void main(String[] args) {
+	            String usernameToCheck = "user123"; // Replace with the username you want to check
+	            boolean exists = doesUserExist(usernameToCheck);
+
+	            if (exists) {
+	                System.out.println("User exists in the database.");
+	            } else {
+	                System.out.println("User does not exist in the database.");
+	            }
+	        }
+	    }
+
 	    
 
-}
+

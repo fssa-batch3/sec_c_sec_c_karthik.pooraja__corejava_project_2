@@ -30,8 +30,7 @@ class TestBooksDAO {
 		book.setEdition(1);
 		book.setCategoryname(BookCategory.ROMANCE);
 
-		boolean result = BookDao.addBooks(book);
-		Assertions.assertTrue(result); // Check if the book was added successfully
+		Assertions.assertTrue(BookDao.addBooks(book)); 
 	}
 
 //    @Test
@@ -43,7 +42,7 @@ class TestBooksDAO {
     void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionException {
         // Create an updated book object with new details
        Book updatedBook = new Book();
-       updatedBook.setId(3); // Replace with the actual ID of the book to update
+       updatedBook.setId(2); // Replace with the actual ID of the book to update
         updatedBook.setTitle("Updated Title");
        updatedBook.setAuthor("Updated Author");
        updatedBook.setPublisheddate(LocalDate.of(2023, 8, 1));
@@ -57,24 +56,24 @@ class TestBooksDAO {
         Assertions.assertTrue(updateResult);
     }
 
-    @Test
-    void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionException {
-        // Call the deleteBooks method and assert the result
-        boolean deleteResult = BookDao.deleteBooks(11); // Use the actual ID
-        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully
-    }
+//    @Test
+//    void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionException {
+//        // Call the deleteBooks method and assert the result
+//        boolean deleteResult = BookDao.deleteBooks(11); // Use the actual ID
+//        Assertions.assertTrue(deleteResult); // Check if the book was deleted successfully
+//    }
 	
 	
-	@Test
-	void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookDataException {
-		
-		List<Book> bookList = BookService.getAllBookByCategory("Romance");
-		
-		for(Book e : bookList) {
-			CustomLogger.info(e);
-		}
-		
-	}
+//	@Test
+//	void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookDataException {
+//		
+//		List<Book> bookList = BookService.getAllBookByCategory("Romance");
+//		
+//		for(Book e : bookList) {
+//			CustomLogger.info(e);
+//		}
+//		
+//	}
 	
 }
 

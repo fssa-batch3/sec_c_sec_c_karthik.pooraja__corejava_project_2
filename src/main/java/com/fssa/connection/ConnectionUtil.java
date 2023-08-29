@@ -10,12 +10,17 @@ public class ConnectionUtil {
 	public static Connection getConnection() throws ConnectionException {
 		Connection con = null;
 		String url, userName, passWord;
+ 
+		
+		url = System.getenv("DATABASE_HOST_1");
+		userName = System.getenv("DATABASE_USERNAME_1");
+		passWord = System.getenv("DATABASE_PASSWORD_1");
+		
+//		url = System.getenv("DATABASE_HOST");
+//		userName = System.getenv("DATABASE_USERNAME");
+//		passWord = System.getenv("DATABASE_PASSWORD");
 
-		url = System.getenv("DATABASE_HOST");
-		userName = System.getenv("DATABASE_USERNAME");
-		passWord = System.getenv("DATABASE_PASSWORD");
-
-		try {
+		try { 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, userName, passWord);
 			System.out.println("connection success");
