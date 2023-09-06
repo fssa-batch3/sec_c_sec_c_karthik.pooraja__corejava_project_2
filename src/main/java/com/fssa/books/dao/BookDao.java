@@ -13,10 +13,9 @@ import com.fssa.connection.*;
 import com.fssa.connection.exception.ConnectionException;
 import com.fssa.books.exception.BookDAOCRUDException;
 import com.fssa.books.exception.BookDataException;
-import com.fssa.util.*;
-
 import com.fssa.books.model.Book;
 import com.fssa.books.model.BookCategory;
+import com.fssa.books.util.*;
 
 public class BookDao {
 	private BookDao() {
@@ -46,7 +45,7 @@ public class BookDao {
 				
 			}
 		} 
-		catch(SQLException| ConnectionException e) {
+		catch(SQLException e) {
 			CustomLogger.info(e.getMessage());
 			e.printStackTrace();
 		}
@@ -56,12 +55,11 @@ public class BookDao {
 
 
 
-	public static List<Book> readBooks(String name) throws SQLException, ConnectionException, BookDataException {
+	public static List<Book> readBooks() throws SQLException, ConnectionException, BookDataException {
 	    List<Book> booklist = new ArrayList<Book>();
 
 	    try (Connection conn = ConnectionUtil.getConnection()) {
-	        try (PreparedStatement st = conn.prepareStatement(READ_QUERY)) {
-	        	st.setString(1, name);
+	        try (PreparedStatement st = conn.prepareStatement(READ_QUERY)) { // Change to the query to retrieve all books
 	            try (ResultSet rs = st.executeQuery()) {
 	                while (rs.next()) {
 	                    int id = rs.getInt("book_id");
@@ -86,16 +84,17 @@ public class BookDao {
 
 	    return booklist;
 	}
+
 		    
 	    public static BookCategory fromString(String categoryStr)throws BookDataException{
 	        return BookCategory.valueOf(categoryStr);  
 	    }
 	
 
-
+ 
 
 	public static boolean updateBooks(Book book) throws BookDAOCRUDException, SQLException, ConnectionException {
-		try (Connection conn = ConnectionUtil.getConnection()) {
+		try (Connection conn = ConnectionUtil.getConnection()) { 
 			try (PreparedStatement pstmt = conn.prepareStatement(UPDATE_QUERY)) {
 				pstmt.setString(1, book.getTitle());
 				pstmt.setString(2, book.getAuthor());
@@ -136,13 +135,13 @@ public class BookDao {
 	}
 	    
 	    
-	    public static List<Book> readBooksByCategory(String category) throws SQLException, ConnectionException, BookDataException {
-		    List<Book> booklist = new ArrayList<Book>();
+	    public static List<Book> readBooksByCategory(String category) throws SQLException, BookDataException {
+		    List<Book> booklist = new ArrayList<>();
 
 		    try (Connection conn = ConnectionUtil.getConnection()) {
 		        try (PreparedStatement st = conn.prepareStatement(READ_BY_CATEGORY_QUERY)) {
 		        	st.setString(1, category);
-		            try (ResultSet rs = st.executeQuery()) {
+		            try (ResultSet rs = st.executeQuery()) { 
 		                while (rs.next()) {
 		                    int id = rs.getInt("book_id");
 		                    String title = rs.getString("title");
@@ -163,53 +162,11 @@ public class BookDao {
 		            }
 		        }
 		    }
-		    catch(SQLException|ConnectionException|BookDataException  e) {
+		    catch(SQLException|BookDataException  e) {
 		    	e.printStackTrace();
 		    }
 
 		    return booklist;
 		}
-
-
-	        private static final String DB_URL = "jdbc:mysql://localhost:3306/core_java_project";
-	        private static final String DB_USER = "root";
-	        private static final String DB_PASSWORD = "123456";
-
-	        public static boolean doesUserExist(String username) {
-	            boolean userExists = false;
-
-	            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-	                String query = "SELECT COUNT(*) FROM lms WHERE title = ?";
-	                
-	                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-	                    preparedStatement.setString(1, username);
-
-	                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
-	                        if (resultSet.next()) {
-	                            int count = resultSet.getInt(1);
-	                            userExists = count > 0;
-	                        }
-	                    }
-	                }
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-
-	            return userExists;
-	        }
-
-	        public static void main(String[] args) {
-	            String usernameToCheck = "user123"; // Replace with the username you want to check
-	            boolean exists = doesUserExist(usernameToCheck);
-
-	            if (exists) {
-	                System.out.println("User exists in the database.");
-	            } else {
-	                System.out.println("User does not exist in the database.");
-	            }
-	        }
-	    }
-
-	    
-
+}
 
