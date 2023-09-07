@@ -1,11 +1,15 @@
+SELECT * FROM core_java_project.books;
+
 CREATE TABLE `books` (
-  `book_id` int NOT NULL AUTO_INCREMENT,
+  `book_id` INT AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `author` varchar(49) DEFAULT NULL,
-  `publisheddate` date DEFAULT NULL,
-  `publisher` varchar(100) DEFAULT NULL,
-  `bookimageurl` blob,
-  `edition` int DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
+  `author` varchar(49) NOT NULL,
+  `publisheddate` date NOT NULL,
+  `publisher` varchar(100) NOT NULL,
+  `bookimageurl` blob NOT NULL,
+  `edition` int NOT NULL,
+  `category` varchar(45) NOT NULL,
   PRIMARY KEY (`book_id`)
-)
+);
+
+select * from books;

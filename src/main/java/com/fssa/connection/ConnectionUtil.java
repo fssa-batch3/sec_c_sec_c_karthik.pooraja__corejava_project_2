@@ -2,6 +2,8 @@ package com.fssa.connection;
 
 import java.sql.*;
 
+import com.fssa.books.util.CustomLogger;
+
 public class ConnectionUtil {
 
 	public static Connection getConnection() {
@@ -10,12 +12,12 @@ public class ConnectionUtil {
 		String url, userName, passWord;
 
 //		Local Credentials
-		url = System.getenv("DATABASE_HOST_LOCAL");
-		userName = System.getenv("DATABASE_USERNAME_LOCAL");
-		passWord = System.getenv("DATABASE_PASSWORD_LOCAL");
-//		url = System.getenv("DATABASE_HOST");
-//		userName = System.getenv("DATABASE_USERNAME");
-//		passWord = System.getenv("DATABASE_PASSWORD");
+//		url = System.getenv("DATABASE_HOST_LOCAL");
+//		userName = System.getenv("DATABASE_USERNAME_LOCAL");
+//		passWord = System.getenv("DATABASE_PASSWORD_LOCAL");
+		url = System.getenv("DATABASE_HOST");
+		userName = System.getenv("DATABASE_USERNAME");
+		passWord = System.getenv("DATABASE_PASSWORD");
 		
 
 		try {
@@ -26,14 +28,6 @@ public class ConnectionUtil {
 			throw new RuntimeException(e);
 		}
 		return con;
-	}
-
-	public static void main(String[] args) {
-		try {
-			ConnectionUtil.getConnection();
-		} catch (RuntimeException e) {
-			System.out.println(e);
-		}
 	}
 
 }

@@ -83,51 +83,65 @@ public class Book {
 		this.bookimageurl = bookimageurl;
 	}
 
-	public Book() {
+	/**
+     * Constructs a new `Book` object with default values for all attributes.
+     */
+    public Book() {
 
-	}
+    }
 
-	public Book(int id, String title, int edition, String author, LocalDate publisheddate, String publishername,
-			BookCategory categoryname, String bookimageurl) {
-		super();
-		this.title = title;
-		this.edition = edition;
-		this.author = author;
-		this.publisheddate = publisheddate;
-		this.publishername = publishername;
-		this.categoryname = categoryname;
-		this.id = id;
-		this.bookimageurl = bookimageurl;
+    /**
+     * Constructs a new `Book` object with provided values for all attributes.
+     *
+     * @param id           The unique identifier of the book.
+     * @param title        The title of the book.
+     * @param edition      The edition of the book.
+     * @param author       The author of the book.
+     * @param publisheddate The published date of the book.
+     * @param publishername The name of the publisher.
+     * @param categoryname The category of the book.
+     * @param bookimageurl The URL of the book's image.
+     */
+    public Book(int id, String title, int edition, String author, LocalDate publisheddate,
+                String publishername, BookCategory categoryname, String bookimageurl) {
+        // Constructor implementation...
+    }
 
-	}
+    /**
+     * Constructs a new `Book` object with provided values for all attributes.
+     * Note: This constructor throws an `UnsupportedOperationException` as its implementation is missing.
+     *
+     * @param id           The unique identifier of the book.
+     * @param title        The title of the book.
+     * @param author       The author of the book.
+     * @param publishedDate The published date of the book.
+     * @param publisher    The name of the publisher.
+     * @param bookImageUrl The URL of the book's image.
+     * @param edition      The edition of the book.
+     * @param category     The category of the book.
+     * @throws UnsupportedOperationException Thrown when the constructor implementation is missing.
+     */
+    public Book(int id, String title, String author, LocalDate publishedDate, String publisher,
+                String bookImageUrl, int edition, BookCategory category) {
+        throw new UnsupportedOperationException("Constructor implementation is missing.");
+    }
 
-	public Book(int id, String title, String author, LocalDate publishedDate, String publisher, String bookImageUrl,
-			int edition, BookCategory category) {
-
-		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.publisheddate = publishedDate;
-		this.publishername = publisher;
-		this.bookimageurl = bookImageUrl;
-		this.edition = edition;
-		this.categoryname = category;
-
-		throw new UnsupportedOperationException("Constructor implementation is missing.");
-	}
-	 
-
-	@Override
-	    public String toString() {
-	        return "Book{" +
-	                "id=" + id +
-	                ", title='" + title + '\'' +
-	                ", edition=" + edition +
-	                ", author='" + author + '\'' +
-	                ", publishedDate=" + publisheddate +
-	                ", publisherName='" + publishername + '\'' +
-	                ", category=" + categoryname+
-	                ", bookImageUrl='" + bookimageurl + '\'' +
-	                '}';
-	    }
+    /**
+     * Returns a string representation of the `Book` object.
+     *
+     * @return A string containing book attributes.
+     */
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", edition=" + edition +
+                ", author='" + author + '\'' +
+                ", publishedDate=" + publisheddate +
+                ", publisherName='" + publishername + '\'' +
+                ", category=" + categoryname +
+                ", bookImageUrl='" + bookimageurl + '\'' +
+                '}';
+    }
 }
