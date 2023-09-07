@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class BookDao {
 	public static boolean addBooks(Book book) throws SQLException, ConnectionException {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 
-			try (PreparedStatement pstmt = conn.prepareStatement(ADD_QUERY)) {
+			try (PreparedStatement pstmt = conn.prepareStatement(ADD_QUERY))  {
 
 				pstmt.setString(1, book.getTitle());
 				pstmt.setString(2, book.getAuthor());
@@ -46,13 +45,12 @@ public class BookDao {
 			}
 		} catch (SQLException e) {
 			CustomLogger.info(e.getMessage());
-			e.printStackTrace();
 		}
 		return true;
 
 	}
 
-	public static List<Book> readBooks() throws SQLException, ConnectionException, BookDataException {
+	public static List<Book> readBooks() throws SQLException,BookDataException, ConnectionException {
 		List<Book> booklist = new ArrayList<>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
@@ -123,7 +121,7 @@ public class BookDao {
 		}
 	}
 
-	public static List<Book> readBooksByCategory(String category) throws SQLException, BookDataException {
+	public static List<Book> readBooksByCategory(String category) throws SQLException, BookDataException, ConnectionException {
 		List<Book> booklist = new ArrayList<>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {

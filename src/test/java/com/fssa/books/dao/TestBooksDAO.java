@@ -68,7 +68,7 @@ void testReadBooks() throws SQLException, BookDAOCRUDException, ConnectionExcept
 void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionException, BookDataException {
     // Create an updated book object with new details
     Book book = new Book();
-    book.setId(2);
+    book.setId(3);
     book.setTitle("Journey to the End of the Night");
     book.setAuthor("Louis-Ferdinand");
     book.setPublisheddate(LocalDate.of(1932, 9, 19));
@@ -99,7 +99,7 @@ void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionExce
 @Test
 void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionException {
     // Call the deleteBooks method and assert the result
-    boolean deleteResult = BookDao.deleteBooks(2);
+    boolean deleteResult = BookDao.deleteBooks(3);
     Assertions.assertTrue(deleteResult);
 }
 
@@ -112,10 +112,11 @@ void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionExcep
  */
 @Test
 void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookDataException {
-    List<Book> bookList = BookService.getAllBookByCategory("ROMANCE");
+    List<Book> bookList = BookService.getAllBookByCategory("FICTION");
 
     for (Book e : bookList) {
         CustomLogger.info(e);
     }
+    Assertions.assertNotNull(bookList);
 }
 }

@@ -1,6 +1,5 @@
 package com.fssa.books.util;
 
-import com.fssa.books.model.Book;
 
 public class CustomLogger {
 	private CustomLogger() {
