@@ -12,10 +12,7 @@ public class ConnectionUtil {
 		Connection con = null ;
 
 
-//		Local Credentials
-//		url = System.getenv("DATABASE_HOST_LOCAL");
-//		userName = System.getenv("DATABASE_USERNAME_LOCAL");
-//		passWord = System.getenv("DATABASE_PASSWORD_LOCAL");
+
 		String url = System.getenv("DATABASE_HOST");
 		String userName = System.getenv("DATABASE_USERNAME");
 		String passWord = System.getenv("DATABASE_PASSWORD");

@@ -149,7 +149,7 @@ public class BookDao {
 				}
 			}
 		} catch (SQLException | BookDataException e) {
-			e.printStackTrace();
+			
 		}
 
 		return booklist;
