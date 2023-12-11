@@ -18,6 +18,15 @@ public class Book {
 	private BookCategory categoryname;
 	private int id;
 	private String bookimageurl;
+	private int stock;
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 
 	public String getTitle() {
 		return title;
@@ -103,7 +112,7 @@ public class Book {
      * @param bookimageurl The URL of the book's image.
      */
     public Book(int id, String title, int edition, String author, LocalDate publisheddate,
-                String publishername, BookCategory categoryname, String bookimageurl) {
+                String publishername, BookCategory categoryname, String bookimageurl,int stock) {
         // Constructor implementation...
     }
 
@@ -126,22 +135,15 @@ public class Book {
         throw new UnsupportedOperationException("Constructor implementation is missing.");
     }
 
-    /**
-     * Returns a string representation of the `Book` object.
-     *
-     * @return A string containing book attributes.
-     */
     @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", edition=" + edition +
-                ", author='" + author + '\'' +
-                ", publishedDate=" + publisheddate +
-                ", publisherName='" + publishername + '\'' +
-                ", category=" + categoryname +
-                ", bookImageUrl='" + bookimageurl + '\'' +
-                '}';
-    }
+	public String toString() {
+		return "Book [title=" + title + ", edition=" + edition + ", author=" + author + ", publisheddate="
+				+ publisheddate + ", publishername=" + publishername + ", categoryname=" + categoryname + ", id=" + id
+				+ ", bookimageurl=" + bookimageurl + ", stock=" + stock + "]";
+	}
+
+	public int getStock1() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

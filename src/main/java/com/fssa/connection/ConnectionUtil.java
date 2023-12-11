@@ -11,11 +11,9 @@ public class ConnectionUtil {
 	public static Connection getConnection() throws ConnectionException{
 		Connection con = null ;
 
-
-
-		String url = System.getenv("DATABASE_HOST");
-		String userName = System.getenv("DATABASE_USERNAME");
-		String passWord = System.getenv("DATABASE_PASSWORD");
+		String url = System.getenv("DATABASE_HOST_LOCAL");
+		String userName = System.getenv("DATABASE_USERNAME_LOCAL");
+		String passWord = System.getenv("DATABASE_PASSWORD_LOCAL");
 		
 
 		try {

@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import com.fssa.books.exception.BookDAOCRUDException;
-import com.fssa.books.exception.BookDataException;
+import com.fssa.books.exception.DataException;
 import com.fssa.books.model.Book;
 import com.fssa.books.model.BookCategory;
 import com.fssa.books.service.BookService;
@@ -22,18 +22,19 @@ import com.fssa.connection.exception.ConnectionException;
  * @throws ConnectionException     If there is an issue with the database connection.
  * @throws BookDataException       If there is an issue with book data.
  */
-class TestBooksDAO {
+class TestBooksDAO { 
 @Test
-void testAddBooks() throws SQLException, BookDAOCRUDException, ConnectionException, BookDataException {
+void testAddBooks() throws SQLException, BookDAOCRUDException, ConnectionException, DataException {
     // Create a book object with the desired details
     Book book = new Book();
-    book.setTitle("Journey to the End of the Night");
-    book.setAuthor("Louis-Ferdinand");
-    book.setPublisheddate(LocalDate.of(1932, 9, 19));
+    book.setTitle("Start With why");
+    book.setAuthor("Simeon sinek");
+    book.setPublisheddate(LocalDate.of(2007, 8, 25));
     book.setPublishername("Penguin Modern Classics");
-    book.setBookimageurl("https://i.pinimg.com/736x/66/b2/68/66b2685be7b2bb138fb547ea5f690a3a--to-the-end-book-cover-design.jpg");
+    book.setBookimageurl("https://www.belbuk.com/images/products/buku/bisnis--keuangan/bisnis--kewirausahaan/Start-With-Why-Cara-Pemimpin-Besar-Menginspirasi-Orang-Untuk-Bertindak-5d36cbd457c47m.jpg");
     book.setEdition(1);
-    book.setCategoryname(BookCategory.FICTION);
+    book.setCategoryname(BookCategory.SELF_HELP);
+    book.setStock(10);
     Assertions.assertTrue(BookService.addBooks(book));
 }
 
@@ -46,7 +47,7 @@ void testAddBooks() throws SQLException, BookDAOCRUDException, ConnectionExcepti
  * @throws BookDataException       If there is an issue with book data.
  */
 @Test
-void testReadBooks() throws SQLException, BookDAOCRUDException, ConnectionException, BookDataException {
+void testReadBooks() throws SQLException, BookDAOCRUDException, ConnectionException, DataException {
     List<Book> bookList = BookService.readBooks();
 
     for (Book e : bookList) {
@@ -65,10 +66,9 @@ void testReadBooks() throws SQLException, BookDAOCRUDException, ConnectionExcept
  * @throws BookDataException       If there is an issue with book data.
  */
 @Test
-void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionException, BookDataException {
+void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionException, DataException {
     // Create an updated book object with new details
     Book book = new Book();
-    book.setId(8);
     book.setTitle("Journey to the End of the Night");
     book.setAuthor("Louis-Ferdinand");
     book.setPublisheddate(LocalDate.of(1932, 9, 19));
@@ -76,6 +76,8 @@ void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionExce
     book.setBookimageurl("https://i.pinimg.com/736x/66/b2/68/66b2685be7b2bb138fb547ea5f690a3a--to-the-end-book-cover-design.jpg");
     book.setEdition(1);
     book.setCategoryname(BookCategory.FICTION);
+    book.setStock(20);
+    book.setId(1);
 
     Assertions.assertTrue(BookService.updateBooks(book));
 
@@ -84,7 +86,7 @@ void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionExce
     try {
         updateResult = BookService.updateBooks(book);
         Assertions.assertTrue(updateResult);
-    } catch (BookDataException | BookDAOCRUDException | SQLException | ConnectionException e) {
+    } catch (DataException | BookDAOCRUDException | SQLException | ConnectionException e) {
         e.printStackTrace();
     }
 }
@@ -99,7 +101,7 @@ void testUpdateBooks() throws SQLException, BookDAOCRUDException, ConnectionExce
 @Test
 void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionException {
     // Call the deleteBooks method and assert the result
-    boolean deleteResult = BookDao.deleteBooks(7);
+    boolean deleteResult = BookDao.deleteBooks(2);
     Assertions.assertTrue(deleteResult);
 }
 
@@ -111,7 +113,7 @@ void testDeleteBook() throws SQLException, BookDAOCRUDException, ConnectionExcep
  * @throws BookDataException       If there is an issue with book data.
  */
 @Test
-void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookDataException {
+void testGetAllBooksByCategory() throws SQLException, ConnectionException, DataException {
     List<Book> bookList = BookService.getAllBookByCategory("FICTION");
 
     for (Book e : bookList) {
@@ -119,4 +121,11 @@ void testGetAllBooksByCategory() throws SQLException, ConnectionException, BookD
     }
     Assertions.assertNotNull(bookList);
 }
+@Test
+void testUpdateBookStocks() throws SQLException, BookDAOCRUDException, ConnectionException {
+    // Call the deleteBooks method and assert the result
+    Assertions.assertTrue(BookDao.updateBookStocks(20, 9));
+}
+
+
 }
